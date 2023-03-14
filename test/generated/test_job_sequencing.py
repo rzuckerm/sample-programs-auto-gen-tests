@@ -1,15 +1,17 @@
-from glotter import project_test, project_fixture
 import pytest
+from glotter import project_test, project_fixture
+
+PROJECT_NAME = "jobsequencing"
 
 
-@project_fixture("jobsequencing")
+@project_fixture(PROJECT_NAME)
 def job_sequencing(request):
     request.param.build()
     yield request.param
     request.param.cleanup()
 
 
-@project_test("jobsequencing")
+@project_test(PROJECT_NAME)
 @pytest.mark.parametrize(
     ("in_params", "expected"),
     [
@@ -23,7 +25,7 @@ def test_sequencing_valid(in_params, expected, job_sequencing):
     assert actual == expected
 
 
-@project_test("jobsequencing")
+@project_test(PROJECT_NAME)
 @pytest.mark.parametrize(
     ("in_params", "expected"),
     [

@@ -1,15 +1,17 @@
-from glotter import project_test, project_fixture
 import pytest
+from glotter import project_test, project_fixture
+
+PROJECT_NAME = "factorial"
 
 
-@project_fixture("factorial")
+@project_fixture(PROJECT_NAME)
 def factorial(request):
     request.param.build()
     yield request.param
     request.param.cleanup()
 
 
-@project_test("factorial")
+@project_test(PROJECT_NAME)
 @pytest.mark.parametrize(
     ("in_params", "expected"),
     [
@@ -26,7 +28,7 @@ def test_factorial_valid(in_params, expected, factorial):
     assert actual == expected
 
 
-@project_test("factorial")
+@project_test(PROJECT_NAME)
 @pytest.mark.parametrize(
     ("in_params", "expected"),
     [

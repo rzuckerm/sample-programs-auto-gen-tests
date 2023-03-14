@@ -1,15 +1,17 @@
-from glotter import project_test, project_fixture
 import pytest
+from glotter import project_test, project_fixture
+
+PROJECT_NAME = "duplicatecharactercounter"
 
 
-@project_fixture("duplicatecharactercounter")
+@project_fixture(PROJECT_NAME)
 def duplicate_character_counter(request):
     request.param.build()
     yield request.param
     request.param.cleanup()
 
 
-@project_test("duplicatecharactercounter")
+@project_test(PROJECT_NAME)
 @pytest.mark.parametrize(
     ("in_params", "expected"),
     [
@@ -34,7 +36,7 @@ def test_duplicate_character_counter_valid(
         ), f"Item {index + 1} is not equal"
 
 
-@project_test("duplicatecharactercounter")
+@project_test(PROJECT_NAME)
 @pytest.mark.parametrize(
     ("in_params", "expected"),
     [

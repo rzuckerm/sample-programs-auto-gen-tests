@@ -1,15 +1,17 @@
-from glotter import project_test, project_fixture
 import pytest
+from glotter import project_test, project_fixture
+
+PROJECT_NAME = "bubblesort"
 
 
-@project_fixture("bubblesort")
+@project_fixture(PROJECT_NAME)
 def bubble_sort(request):
     request.param.build()
     yield request.param
     request.param.cleanup()
 
 
-@project_test("bubblesort")
+@project_test(PROJECT_NAME)
 @pytest.mark.parametrize(
     ("in_params", "expected"),
     [
@@ -33,7 +35,7 @@ def test_bubble_sort_valid(in_params, expected, bubble_sort):
     assert actual == expected
 
 
-@project_test("bubblesort")
+@project_test(PROJECT_NAME)
 @pytest.mark.parametrize(
     ("in_params", "expected"),
     [

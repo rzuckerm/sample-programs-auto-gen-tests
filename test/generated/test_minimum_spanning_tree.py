@@ -1,15 +1,17 @@
-from glotter import project_test, project_fixture
 import pytest
+from glotter import project_test, project_fixture
+
+PROJECT_NAME = "minimumspanningtree"
 
 
-@project_fixture("minimumspanningtree")
+@project_fixture(PROJECT_NAME)
 def minimum_spanning_tree(request):
     request.param.build()
     yield request.param
     request.param.cleanup()
 
 
-@project_test("minimumspanningtree")
+@project_test(PROJECT_NAME)
 @pytest.mark.parametrize(
     ("in_params", "expected"),
     [
@@ -26,7 +28,7 @@ def test_minimum_spanning_tree_valid(in_params, expected, minimum_spanning_tree)
     assert actual == expected
 
 
-@project_test("minimumspanningtree")
+@project_test(PROJECT_NAME)
 @pytest.mark.parametrize(
     ("in_params", "expected"),
     [

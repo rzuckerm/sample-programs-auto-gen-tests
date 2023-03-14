@@ -1,15 +1,17 @@
-from glotter import project_test, project_fixture
 import pytest
+from glotter import project_test, project_fixture
+
+PROJECT_NAME = "capitalize"
 
 
-@project_fixture("capitalize")
+@project_fixture(PROJECT_NAME)
 def capitalize(request):
     request.param.build()
     yield request.param
     request.param.cleanup()
 
 
-@project_test("capitalize")
+@project_test(PROJECT_NAME)
 @pytest.mark.parametrize(
     ("in_params", "expected"),
     [
@@ -26,7 +28,7 @@ def test_capitalize_valid(in_params, expected, capitalize):
     assert actual == expected
 
 
-@project_test("capitalize")
+@project_test(PROJECT_NAME)
 @pytest.mark.parametrize(
     ("in_params", "expected"),
     [

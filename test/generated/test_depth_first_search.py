@@ -1,15 +1,17 @@
-from glotter import project_test, project_fixture
 import pytest
+from glotter import project_test, project_fixture
+
+PROJECT_NAME = "depthfirstsearch"
 
 
-@project_fixture("depthfirstsearch")
+@project_fixture(PROJECT_NAME)
 def depth_first_search(request):
     request.param.build()
     yield request.param
     request.param.cleanup()
 
 
-@project_test("depthfirstsearch")
+@project_test(PROJECT_NAME)
 @pytest.mark.parametrize(
     ("in_params", "expected"),
     [
@@ -43,7 +45,7 @@ def test_depth_first_search_valid(in_params, expected, depth_first_search):
     assert actual == expected
 
 
-@project_test("depthfirstsearch")
+@project_test(PROJECT_NAME)
 @pytest.mark.parametrize(
     ("in_params", "expected"),
     [

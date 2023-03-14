@@ -1,14 +1,16 @@
 from glotter import project_test, project_fixture
 
+PROJECT_NAME = "baklava"
 
-@project_fixture("baklava")
+
+@project_fixture(PROJECT_NAME)
 def baklava(request):
     request.param.build()
     yield request.param
     request.param.cleanup()
 
 
-@project_test("baklava")
+@project_test(PROJECT_NAME)
 def test_baklava(baklava):
     actual = baklava.run()
     expected = [

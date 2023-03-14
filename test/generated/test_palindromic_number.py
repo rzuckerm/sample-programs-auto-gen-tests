@@ -1,15 +1,17 @@
-from glotter import project_test, project_fixture
 import pytest
+from glotter import project_test, project_fixture
+
+PROJECT_NAME = "palindromicnumber"
 
 
-@project_fixture("palindromicnumber")
+@project_fixture(PROJECT_NAME)
 def palindromic_number(request):
     request.param.build()
     yield request.param
     request.param.cleanup()
 
 
-@project_test("palindromicnumber")
+@project_test(PROJECT_NAME)
 @pytest.mark.parametrize(
     ("in_params", "expected"),
     [
@@ -26,7 +28,7 @@ def test_palindromic_number_valid(in_params, expected, palindromic_number):
     assert actual == expected
 
 
-@project_test("palindromicnumber")
+@project_test(PROJECT_NAME)
 @pytest.mark.parametrize(
     ("in_params", "expected"),
     [

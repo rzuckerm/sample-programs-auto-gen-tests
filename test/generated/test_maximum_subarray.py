@@ -1,15 +1,17 @@
-from glotter import project_test, project_fixture
 import pytest
+from glotter import project_test, project_fixture
+
+PROJECT_NAME = "maximumsubarray"
 
 
-@project_fixture("maximumsubarray")
+@project_fixture(PROJECT_NAME)
 def maximum_subarray(request):
     request.param.build()
     yield request.param
     request.param.cleanup()
 
 
-@project_test("maximumsubarray")
+@project_test(PROJECT_NAME)
 @pytest.mark.parametrize(
     ("in_params", "expected"),
     [
@@ -34,7 +36,7 @@ def test_maximum_subarray_valid(in_params, expected, maximum_subarray):
     assert actual == expected
 
 
-@project_test("maximumsubarray")
+@project_test(PROJECT_NAME)
 @pytest.mark.parametrize(
     ("in_params", "expected"),
     [

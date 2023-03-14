@@ -1,15 +1,17 @@
-from glotter import project_test, project_fixture
 import pytest
+from glotter import project_test, project_fixture
+
+PROJECT_NAME = "longestpalindromicsubstring"
 
 
-@project_fixture("longestpalindromicsubstring")
+@project_fixture(PROJECT_NAME)
 def longest_palindromic_substring(request):
     request.param.build()
     yield request.param
     request.param.cleanup()
 
 
-@project_test("longestpalindromicsubstring")
+@project_test(PROJECT_NAME)
 @pytest.mark.parametrize(
     ("in_params", "expected"),
     [
@@ -28,7 +30,7 @@ def test_lps_valid(in_params, expected, longest_palindromic_substring):
     assert actual == expected
 
 
-@project_test("longestpalindromicsubstring")
+@project_test(PROJECT_NAME)
 @pytest.mark.parametrize(
     ("in_params", "expected"),
     [

@@ -1,15 +1,17 @@
-from glotter import project_test, project_fixture
 import pytest
+from glotter import project_test, project_fixture
+
+PROJECT_NAME = "insertionsort"
 
 
-@project_fixture("insertionsort")
+@project_fixture(PROJECT_NAME)
 def insertion_sort(request):
     request.param.build()
     yield request.param
     request.param.cleanup()
 
 
-@project_test("insertionsort")
+@project_test(PROJECT_NAME)
 @pytest.mark.parametrize(
     ("in_params", "expected"),
     [
@@ -33,7 +35,7 @@ def test_insertion_sort_valid(in_params, expected, insertion_sort):
     assert actual == expected
 
 
-@project_test("insertionsort")
+@project_test(PROJECT_NAME)
 @pytest.mark.parametrize(
     ("in_params", "expected"),
     [

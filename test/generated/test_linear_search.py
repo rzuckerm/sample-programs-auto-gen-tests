@@ -1,15 +1,17 @@
-from glotter import project_test, project_fixture
 import pytest
+from glotter import project_test, project_fixture
+
+PROJECT_NAME = "linearsearch"
 
 
-@project_fixture("linearsearch")
+@project_fixture(PROJECT_NAME)
 def linear_search(request):
     request.param.build()
     yield request.param
     request.param.cleanup()
 
 
-@project_test("linearsearch")
+@project_test(PROJECT_NAME)
 @pytest.mark.parametrize(
     ("in_params", "expected"),
     [
@@ -27,7 +29,7 @@ def test_linear_search_valid(in_params, expected, linear_search):
     assert actual == expected
 
 
-@project_test("linearsearch")
+@project_test(PROJECT_NAME)
 @pytest.mark.parametrize(
     ("in_params", "expected"),
     [

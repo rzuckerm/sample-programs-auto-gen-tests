@@ -1,15 +1,17 @@
-from glotter import project_test, project_fixture
 import pytest
+from glotter import project_test, project_fixture
+
+PROJECT_NAME = "convexhull"
 
 
-@project_fixture("convexhull")
+@project_fixture(PROJECT_NAME)
 def convex_hull(request):
     request.param.build()
     yield request.param
     request.param.cleanup()
 
 
-@project_test("convexhull")
+@project_test(PROJECT_NAME)
 @pytest.mark.parametrize(
     ("in_params", "expected"),
     [
@@ -41,7 +43,7 @@ def test_convex_hull_valid(in_params, expected, convex_hull):
         ), f"Item {index + 1} is not equal"
 
 
-@project_test("convexhull")
+@project_test(PROJECT_NAME)
 @pytest.mark.parametrize(
     ("in_params", "expected"),
     [

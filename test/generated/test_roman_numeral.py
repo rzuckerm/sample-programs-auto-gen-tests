@@ -1,15 +1,17 @@
-from glotter import project_test, project_fixture
 import pytest
+from glotter import project_test, project_fixture
+
+PROJECT_NAME = "romannumeral"
 
 
-@project_fixture("romannumeral")
+@project_fixture(PROJECT_NAME)
 def roman_numeral(request):
     request.param.build()
     yield request.param
     request.param.cleanup()
 
 
-@project_test("romannumeral")
+@project_test(PROJECT_NAME)
 @pytest.mark.parametrize(
     ("in_params", "expected"),
     [
@@ -31,7 +33,7 @@ def test_roman_numeral_valid(in_params, expected, roman_numeral):
     assert actual == expected
 
 
-@project_test("romannumeral")
+@project_test(PROJECT_NAME)
 @pytest.mark.parametrize(
     ("in_params", "expected"),
     [

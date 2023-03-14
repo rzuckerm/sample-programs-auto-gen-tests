@@ -1,15 +1,17 @@
-from glotter import project_test, project_fixture
 import pytest
+from glotter import project_test, project_fixture
+
+PROJECT_NAME = "mergesort"
 
 
-@project_fixture("mergesort")
+@project_fixture(PROJECT_NAME)
 def merge_sort(request):
     request.param.build()
     yield request.param
     request.param.cleanup()
 
 
-@project_test("mergesort")
+@project_test(PROJECT_NAME)
 @pytest.mark.parametrize(
     ("in_params", "expected"),
     [
@@ -33,7 +35,7 @@ def test_merge_sort_valid(in_params, expected, merge_sort):
     assert actual == expected
 
 
-@project_test("mergesort")
+@project_test(PROJECT_NAME)
 @pytest.mark.parametrize(
     ("in_params", "expected"),
     [

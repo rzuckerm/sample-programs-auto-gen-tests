@@ -1,15 +1,17 @@
-from glotter import project_test, project_fixture
 import pytest
+from glotter import project_test, project_fixture
+
+PROJECT_NAME = "longestword"
 
 
-@project_fixture("longestword")
+@project_fixture(PROJECT_NAME)
 def longest_word(request):
     request.param.build()
     yield request.param
     request.param.cleanup()
 
 
-@project_test("longestword")
+@project_test(PROJECT_NAME)
 @pytest.mark.parametrize(
     ("in_params", "expected"),
     [
@@ -26,7 +28,7 @@ def test_longest_word_valid(in_params, expected, longest_word):
     assert actual == expected
 
 
-@project_test("longestword")
+@project_test(PROJECT_NAME)
 @pytest.mark.parametrize(
     ("in_params", "expected"),
     [

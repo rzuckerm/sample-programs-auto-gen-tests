@@ -1,15 +1,17 @@
-from glotter import project_test, project_fixture
 import pytest
+from glotter import project_test, project_fixture
+
+PROJECT_NAME = "rot13"
 
 
-@project_fixture("rot13")
+@project_fixture(PROJECT_NAME)
 def rot13(request):
     request.param.build()
     yield request.param
     request.param.cleanup()
 
 
-@project_test("rot13")
+@project_test(PROJECT_NAME)
 @pytest.mark.parametrize(
     ("in_params", "expected"),
     [
@@ -36,7 +38,7 @@ def test_rot13_valid(in_params, expected, rot13):
     assert actual == expected
 
 
-@project_test("rot13")
+@project_test(PROJECT_NAME)
 @pytest.mark.parametrize(
     ("in_params", "expected"),
     [

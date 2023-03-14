@@ -1,15 +1,17 @@
-from glotter import project_test, project_fixture
 import pytest
+from glotter import project_test, project_fixture
+
+PROJECT_NAME = "primenumber"
 
 
-@project_fixture("primenumber")
+@project_fixture(PROJECT_NAME)
 def prime_number(request):
     request.param.build()
     yield request.param
     request.param.cleanup()
 
 
-@project_test("primenumber")
+@project_test(PROJECT_NAME)
 @pytest.mark.parametrize(
     ("in_params", "expected"),
     [
@@ -28,7 +30,7 @@ def test_prime_valid(in_params, expected, prime_number):
     assert actual == expected
 
 
-@project_test("primenumber")
+@project_test(PROJECT_NAME)
 @pytest.mark.parametrize(
     ("in_params", "expected"),
     [

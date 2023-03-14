@@ -1,15 +1,17 @@
-from glotter import project_test, project_fixture
 import pytest
+from glotter import project_test, project_fixture
+
+PROJECT_NAME = "josephusproblem"
 
 
-@project_fixture("josephusproblem")
+@project_fixture(PROJECT_NAME)
 def josephus_problem(request):
     request.param.build()
     yield request.param
     request.param.cleanup()
 
 
-@project_test("josephusproblem")
+@project_test(PROJECT_NAME)
 @pytest.mark.parametrize(
     ("in_params", "expected"),
     [
@@ -24,7 +26,7 @@ def test_josephus_problem_valid(in_params, expected, josephus_problem):
     assert actual == expected
 
 
-@project_test("josephusproblem")
+@project_test(PROJECT_NAME)
 @pytest.mark.parametrize(
     ("in_params", "expected"),
     [

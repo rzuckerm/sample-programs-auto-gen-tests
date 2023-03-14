@@ -1,15 +1,17 @@
-from glotter import project_test, project_fixture
 import pytest
+from glotter import project_test, project_fixture
+
+PROJECT_NAME = "maximumarrayrotation"
 
 
-@project_fixture("maximumarrayrotation")
+@project_fixture(PROJECT_NAME)
 def maximum_array_rotation(request):
     request.param.build()
     yield request.param
     request.param.cleanup()
 
 
-@project_test("maximumarrayrotation")
+@project_test(PROJECT_NAME)
 @pytest.mark.parametrize(
     ("in_params", "expected"),
     [
@@ -24,7 +26,7 @@ def test_maximimum_array_rotation_valid(in_params, expected, maximum_array_rotat
     assert actual == expected
 
 
-@project_test("maximumarrayrotation")
+@project_test(PROJECT_NAME)
 @pytest.mark.parametrize(
     ("in_params", "expected"),
     [

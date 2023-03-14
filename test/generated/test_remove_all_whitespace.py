@@ -1,15 +1,17 @@
-from glotter import project_test, project_fixture
 import pytest
+from glotter import project_test, project_fixture
+
+PROJECT_NAME = "removeallwhitespace"
 
 
-@project_fixture("removeallwhitespace")
+@project_fixture(PROJECT_NAME)
 def remove_all_whitespace(request):
     request.param.build()
     yield request.param
     request.param.cleanup()
 
 
-@project_test("removeallwhitespace")
+@project_test(PROJECT_NAME)
 @pytest.mark.parametrize(
     ("in_params", "expected"),
     [
@@ -54,7 +56,7 @@ def test_remove_all_whitespace_valid(in_params, expected, remove_all_whitespace)
     assert actual == expected
 
 
-@project_test("removeallwhitespace")
+@project_test(PROJECT_NAME)
 @pytest.mark.parametrize(
     ("in_params", "expected"),
     [

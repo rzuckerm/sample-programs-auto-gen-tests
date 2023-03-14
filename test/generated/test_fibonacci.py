@@ -1,15 +1,17 @@
-from glotter import project_test, project_fixture
 import pytest
+from glotter import project_test, project_fixture
+
+PROJECT_NAME = "fibonacci"
 
 
-@project_fixture("fibonacci")
+@project_fixture(PROJECT_NAME)
 def fibonacci(request):
     request.param.build()
     yield request.param
     request.param.cleanup()
 
 
-@project_test("fibonacci")
+@project_test(PROJECT_NAME)
 @pytest.mark.parametrize(
     ("in_params", "expected"),
     [
@@ -48,7 +50,7 @@ def test_fibonacci_valid(in_params, expected, fibonacci):
         ), f"Item {index + 1} is not equal"
 
 
-@project_test("fibonacci")
+@project_test(PROJECT_NAME)
 @pytest.mark.parametrize(
     ("in_params", "expected"),
     [

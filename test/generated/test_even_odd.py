@@ -1,15 +1,17 @@
-from glotter import project_test, project_fixture
 import pytest
+from glotter import project_test, project_fixture
+
+PROJECT_NAME = "evenodd"
 
 
-@project_fixture("evenodd")
+@project_fixture(PROJECT_NAME)
 def even_odd(request):
     request.param.build()
     yield request.param
     request.param.cleanup()
 
 
-@project_test("evenodd")
+@project_test(PROJECT_NAME)
 @pytest.mark.parametrize(
     ("in_params", "expected"),
     [
@@ -25,7 +27,7 @@ def test_even_odd_valid(in_params, expected, even_odd):
     assert actual == expected
 
 
-@project_test("evenodd")
+@project_test(PROJECT_NAME)
 @pytest.mark.parametrize(
     ("in_params", "expected"),
     [

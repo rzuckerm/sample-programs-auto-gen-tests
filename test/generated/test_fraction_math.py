@@ -1,15 +1,17 @@
-from glotter import project_test, project_fixture
 import pytest
+from glotter import project_test, project_fixture
+
+PROJECT_NAME = "fractionmath"
 
 
-@project_fixture("fractionmath")
+@project_fixture(PROJECT_NAME)
 def fraction_math(request):
     request.param.build()
     yield request.param
     request.param.cleanup()
 
 
-@project_test("fractionmath")
+@project_test(PROJECT_NAME)
 @pytest.mark.parametrize(
     ("in_params", "expected"),
     [
@@ -31,7 +33,7 @@ def test_fractions_valid(in_params, expected, fraction_math):
     assert actual == expected
 
 
-@project_test("fractionmath")
+@project_test(PROJECT_NAME)
 @pytest.mark.parametrize(
     ("in_params", "expected"),
     [

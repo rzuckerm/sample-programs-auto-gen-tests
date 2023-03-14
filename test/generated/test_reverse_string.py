@@ -1,19 +1,21 @@
-from glotter import project_test, project_fixture
 import pytest
+from glotter import project_test, project_fixture
+
+PROJECT_NAME = "reversestring"
 
 
-@project_fixture("reversestring")
+@project_fixture(PROJECT_NAME)
 def reverse_string(request):
     request.param.build()
     yield request.param
     request.param.cleanup()
 
 
-@project_test("reversestring")
+@project_test(PROJECT_NAME)
 @pytest.mark.parametrize(
     ("in_params", "expected"),
     [
-        pytest.param('"Hello, World"', "dlroW ,olleH", id="None"),
+        pytest.param('"Hello, World"', "dlroW ,olleH", id="Ascii String"),
     ],
 )
 def test_reverse_string(in_params, expected, reverse_string):

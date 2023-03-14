@@ -1,15 +1,17 @@
-from glotter import project_test, project_fixture
 import pytest
+from glotter import project_test, project_fixture
+
+PROJECT_NAME = "selectionsort"
 
 
-@project_fixture("selectionsort")
+@project_fixture(PROJECT_NAME)
 def selection_sort(request):
     request.param.build()
     yield request.param
     request.param.cleanup()
 
 
-@project_test("selectionsort")
+@project_test(PROJECT_NAME)
 @pytest.mark.parametrize(
     ("in_params", "expected"),
     [
@@ -33,7 +35,7 @@ def test_selection_sort_valid(in_params, expected, selection_sort):
     assert actual == expected
 
 
-@project_test("selectionsort")
+@project_test(PROJECT_NAME)
 @pytest.mark.parametrize(
     ("in_params", "expected"),
     [

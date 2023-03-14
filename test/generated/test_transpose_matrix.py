@@ -1,15 +1,17 @@
-from glotter import project_test, project_fixture
 import pytest
+from glotter import project_test, project_fixture
+
+PROJECT_NAME = "transposematrix"
 
 
-@project_fixture("transposematrix")
+@project_fixture(PROJECT_NAME)
 def transpose_matrix(request):
     request.param.build()
     yield request.param
     request.param.cleanup()
 
 
-@project_test("transposematrix")
+@project_test(PROJECT_NAME)
 @pytest.mark.parametrize(
     ("in_params", "expected"),
     [
@@ -24,7 +26,7 @@ def test_transpose_matrix_valid(in_params, expected, transpose_matrix):
     assert actual == expected
 
 
-@project_test("transposematrix")
+@project_test(PROJECT_NAME)
 @pytest.mark.parametrize(
     ("in_params", "expected"),
     [

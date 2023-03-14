@@ -1,14 +1,16 @@
 from glotter import project_test, project_fixture
 
+PROJECT_NAME = "fizzbuzz"
 
-@project_fixture("fizzbuzz")
+
+@project_fixture(PROJECT_NAME)
 def fizz_buzz(request):
     request.param.build()
     yield request.param
     request.param.cleanup()
 
 
-@project_test("fizzbuzz")
+@project_test(PROJECT_NAME)
 def test_fizz_buzz(fizz_buzz):
     actual = fizz_buzz.run()
     expected = [
