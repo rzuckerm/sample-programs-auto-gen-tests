@@ -10,7 +10,7 @@ In order to keep things simple, we split up the testing as follows:
 | Description | Input | Output |
 | ----------- | ----- | ------ |
 | Sample Input: One Palindrome | "racecar" | "racecar" |
-| Sample Input: Two Palindrome | "kayak" | "kayak" |
+| Sample Input: Two Palindrome | "kayak mom" | "kayak" |
 | Sample Input: Complex Palindrome | "step on no pets" | "step on no pets" |
 
 ### Lps Invalid

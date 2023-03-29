@@ -15,6 +15,8 @@ def reverse_string(request):
 @pytest.mark.parametrize(
     ("in_params", "expected"),
     [
+        pytest.param(None, "", id="No input"),
+        pytest.param('""', "", id="Empty input"),
         pytest.param('"Hello, World"', "dlroW ,olleH", id="Ascii String"),
     ],
 )

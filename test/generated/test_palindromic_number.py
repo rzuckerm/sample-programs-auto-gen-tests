@@ -34,7 +34,7 @@ def test_palindromic_number_valid(in_params, expected, palindromic_number):
     [
         pytest.param(None, "Usage: please input a non-negative integer", id="no input"),
         pytest.param(
-            "", "Usage: please input a non-negative integer", id="empty input"
+            '""', "Usage: please input a non-negative integer", id="empty input"
         ),
         pytest.param(
             "a",

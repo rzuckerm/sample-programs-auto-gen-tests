@@ -16,7 +16,7 @@ def longest_palindromic_substring(request):
     ("in_params", "expected"),
     [
         pytest.param("racecar", "racecar", id="sample input: one palindrome"),
-        pytest.param("kayak mom", "kayak", id="sample input: two palindrome"),
+        pytest.param('"kayak mom"', "kayak", id="sample input: two palindrome"),
         pytest.param(
             '"step on no pets"',
             "step on no pets",

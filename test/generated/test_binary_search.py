@@ -15,14 +15,14 @@ def binary_search(request):
 @pytest.mark.parametrize(
     ("in_params", "expected"),
     [
-        pytest.param('"1, 3, 5, 7" "1"', "true", id="sample input first true"),
-        pytest.param('"1, 3, 5, 7" "7"', "true", id="sample input last true"),
-        pytest.param('"1, 3, 5, 7" "5"', "true", id="sample input middle true"),
-        pytest.param('"5" "5"', "true", id="sample input one true"),
-        pytest.param('"5" "7"', "false", id="sample input one false"),
-        pytest.param('"1, 3, 5, 6" "7"', "false", id="sample input many false"),
+        pytest.param('"1, 3, 5, 7" "1"', "true", id="sample input: first true"),
+        pytest.param('"1, 3, 5, 7" "7"', "true", id="sample input: last true"),
+        pytest.param('"1, 3, 5, 7" "5"', "true", id="sample input: middle true"),
+        pytest.param('"5" "5"', "true", id="sample input: one true"),
+        pytest.param('"5" "7"', "false", id="sample input: one false"),
+        pytest.param('"1, 3, 5, 6" "7"', "false", id="sample input: many false"),
         pytest.param(
-            '"1, 2, 3, 4, 5, 6, 7" "3"', "true", id="sample input middle true"
+            '"1, 2, 3, 4, 5, 6, 7" "3"', "true", id="sample input: middle true"
         ),
     ],
 )

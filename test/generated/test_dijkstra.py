@@ -53,24 +53,29 @@ def test_dijkstra_valid(in_params, expected, dijkstra):
             id="no destination",
         ),
         pytest.param(
-            '"0, 2, 0, 6, 0, 2, 0, 3, 8, 5, 0, 3, 0, 0, 7, 6, 8, 0, 0, 9, 0, 5, 7, 9, 0" "3" "" ""',
+            '"0, 2, 0, 6, 0, 2, 0, 3, 8, 5, 0, 3, 0, 0, 7, 6, 8, 0, 0, 9, 0, 5, 7, 9, 0" "" ""',
             "Usage: please provide three inputs: a serialized matrix, a source node and a destination node",
             id="no source or destination",
         ),
         pytest.param(
-            '"0, 2, 0, 6, 0, 2, 0, 3, 8, 5, 0, 3, 0, 0, 7, 6, 8, 0, 0, 9, 0, 5, 7, 9, 0" "3" "-1" "2"',
+            '"0, 2, 0, 6, 0, 2, 0, 3, 8, 5, 0, 3, 0, 0, 7, 6, 8, 0, 0, 9, 0, 5, 7, 9, 0" "-1" "2"',
             "Usage: please provide three inputs: a serialized matrix, a source node and a destination node",
             id="source or destination < 0",
         ),
         pytest.param(
-            '"0, 2, 0, -6, 0, 2, 0, 3, 8, 5, 0, 3, 0, 0, 7, -6, 8, 0, 0, 9, 0, 5, 7, 9, 0" "3" "1" "2"',
+            '"0, 2, 0, -6, 0, 2, 0, 3, 8, 5, 0, 3, 0, 0, 7, -6, 8, 0, 0, 9, 0, 5, 7, 9, 0" "1" "2"',
             "Usage: please provide three inputs: a serialized matrix, a source node and a destination node",
             id="weight < 0",
         ),
         pytest.param(
-            '"0, 2, 0, -6, 0, 2, 0, 3, 8, 5, 0, 3, 0, 0, 7, -6, 8, 0, 0, 9, 0, 5, 7, 9, 0" "3" "1" "10"',
+            '"0, 2, 0, -6, 0, 2, 0, 3, 8, 5, 0, 3, 0, 0, 7, -6, 8, 0, 0, 9, 0, 5, 7, 9, 0" "1" "10"',
             "Usage: please provide three inputs: a serialized matrix, a source node and a destination node",
             id="source or destination > number of vertices",
+        ),
+        pytest.param(
+            '"0, 0, 0, 0" "0" "1"',
+            "Usage: please provide three inputs: a serialized matrix, a source node and a destination node",
+            id="no way",
         ),
     ],
 )

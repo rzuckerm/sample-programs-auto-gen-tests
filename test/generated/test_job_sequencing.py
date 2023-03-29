@@ -40,12 +40,12 @@ def test_sequencing_valid(in_params, expected, job_sequencing):
             id="empty input",
         ),
         pytest.param(
-            '"25 15 10 5"',
+            '"25, 15, 10, 5"',
             "Usage: please provide a list of profits and a list of deadlines",
             id="missing input",
         ),
         pytest.param(
-            '"1, 2, 3, 4", "1, 2, 3, 4, 5"',
+            '"1, 2, 3, 4" "1, 2, 3, 4, 5"',
             "Usage: please provide a list of profits and a list of deadlines",
             id="lists different lengths",
         ),
